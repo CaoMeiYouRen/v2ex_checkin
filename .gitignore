@@ -1,0 +1,7 @@
+**/.idea
+**/Lib
+**/Scripts
+**/__pycache__
+desktop.ini
+pyvenv.cfg
+config.yml
