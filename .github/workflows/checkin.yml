@@ -32,4 +32,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Check-in
-        run: python ./v2ex_checkin.py.py
+        run: python ./v2ex_checkin.py
