@@ -56,7 +56,7 @@ def send_notify(title, text, config):
 # 获取 once
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
-    r = SESSION.get(url, headers=HEADERS, verify=False)
+    r = SESSION.get(url, headers=HEADERS)
 
     global msg
     if "你要查看的页面需要先登录" in r.text:
@@ -81,13 +81,13 @@ def get_once():
 def check_in(once):
     # 无内容返回
     url = "https://www.v2ex.com/mission/daily/redeem?once=" + once
-    SESSION.get(url, headers=HEADERS, verify=False)
+    SESSION.get(url, headers=HEADERS)
 
 
 # 查询
 def query_balance():
     url = "https://www.v2ex.com/balance"
-    r = SESSION.get(url, headers=HEADERS, verify=False)
+    r = SESSION.get(url, headers=HEADERS)
     tree = html.fromstring(r.content)
 
     # 签到结果
