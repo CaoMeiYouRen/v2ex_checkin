@@ -57,9 +57,12 @@ def send_notify(title, text, config):
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
     r = SESSION.get(url, headers=HEADERS)
+    logging.info(r.text)
 
     global msg
-    if "你要查看的页面需要先登录" in r.text:
+    if not r.text:
+        return "", False
+    elif "你要查看的页面需要先登录" in r.text:
         msg += [{"name": "登录信息", "value": "登录失败，Cookie 可能已经失效"}]
         return "", False
     elif "每日登录奖励已领取" in r.text:
