@@ -122,10 +122,13 @@ def query_balance():
 
 
 def main():
+    once = None
+    success = None
     for i in range(3):
         try:
             once, success = get_once()
-        except AttributeError:
+        except AttributeError as err:
+            logging.error(f"{str(err)}")
             if i < 3:
                 time.sleep(3)
                 continue
