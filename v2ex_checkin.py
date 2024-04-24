@@ -56,7 +56,7 @@ def send_notify(title, text, config):
 # 获取 once
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
-    r = SESSION.get(url, headers=HEADERS)
+    r = SESSION.get(url, headers=HEADERS, verify=False)
     logging.info(r.text)
 
     global msg
@@ -84,13 +84,13 @@ def get_once():
 def check_in(once):
     # 无内容返回
     url = "https://www.v2ex.com/mission/daily/redeem?once=" + once
-    SESSION.get(url, headers=HEADERS)
+    SESSION.get(url, headers=HEADERS, verify=False)
 
 
 # 查询
 def query_balance():
     url = "https://www.v2ex.com/balance"
-    r = SESSION.get(url, headers=HEADERS)
+    r = SESSION.get(url, headers=HEADERS, verify=False)
     tree = html.fromstring(r.content)
 
     # 签到结果
