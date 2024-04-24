@@ -22,6 +22,7 @@ HEADERS = {
     "Accept": "*/*",
     "Accept-Encoding": "gzip, deflate, br",
     "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,ja;q=0.7,zh-TW;q=0.6,da;q=0.5",
+    "Accept-Charset": "utf-8",
     "cache-control": "no-cache",
     "Cookie": COOKIES,
     "pragma": "no-cache",
@@ -56,7 +57,7 @@ def send_notify(title, text, config):
 # 获取 once
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
-    r = SESSION.get(url, headers=HEADERS, verify=False)
+    r = SESSION.get(url, headers=HEADERS, encoding="utf-8")
     logging.info(r.text)
 
     global msg
@@ -84,13 +85,13 @@ def get_once():
 def check_in(once):
     # 无内容返回
     url = "https://www.v2ex.com/mission/daily/redeem?once=" + once
-    SESSION.get(url, headers=HEADERS, verify=False)
+    SESSION.get(url, headers=HEADERS)
 
 
 # 查询
 def query_balance():
     url = "https://www.v2ex.com/balance"
-    r = SESSION.get(url, headers=HEADERS, verify=False)
+    r = SESSION.get(url, headers=HEADERS)
     tree = html.fromstring(r.content)
 
     # 签到结果
