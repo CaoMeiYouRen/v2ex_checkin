@@ -125,6 +125,7 @@ def query_balance():
 
 
 def main():
+    global msg
     once = None
     success = None
     for i in range(3):
@@ -132,6 +133,7 @@ def main():
             once, success = get_once()
         except AttributeError as err:
             logging.error(f"{str(err)}")
+            msg += [str(err)]
             if i < 3:
                 time.sleep(3)
                 continue
@@ -142,7 +144,6 @@ def main():
         check_in(once)
     if success:
         query_balance()
-    global msg
     return "\n".join([f"{one.get('name')}: {one.get('value')}" for one in msg])
 
 
