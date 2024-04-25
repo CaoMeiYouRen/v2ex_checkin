@@ -58,7 +58,7 @@ def send_notify(title, text, config):
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
     r = SESSION.get(url, headers=HEADERS)
-
+    logging.info(r)
     global msg
     if not r.text:
         return "", False
@@ -133,7 +133,7 @@ def main():
             once, success = get_once()
         except AttributeError as err:
             logging.error(f"{str(err)}")
-            msg += [str(err)]
+            msg += [{"name": "错误信息", "value": str(err)}]
             if i < 3:
                 time.sleep(3)
                 continue
