@@ -7,6 +7,7 @@ import os
 import re
 import time
 from datetime import date, datetime
+import chardet
 from onepush import notify
 import logging
 import requests
@@ -58,7 +59,9 @@ def send_notify(title, text, config):
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
     r = SESSION.get(url, headers=HEADERS)
-    logging.info(r)
+    logging.info(r.headers)
+    logging.info(r.text)
+    logging.info(chardet.detect(r.text))
     global msg
     if not r.text:
         return "", False
