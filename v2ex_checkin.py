@@ -60,10 +60,10 @@ def send_notify(title, text, config):
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
     r = SESSION.get(url, headers=HEADERS)
-    logging.info(r.headers)
+    # logging.info(r.headers)
     logging.info(r.text)
-    logging.info(r.content.decode("utf-8"))
-    logging.info(r.content.decode("gbk"))
+    # logging.info(r.content.decode("utf-8"))
+    # logging.info(r.content.decode("gbk"))
     # logging.info(chardet.detect(r.text.encode()))
     global msg
     if not r.text:
