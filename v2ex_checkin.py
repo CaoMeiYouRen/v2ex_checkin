@@ -61,7 +61,7 @@ def get_once():
     r = SESSION.get(url, headers=HEADERS)
     logging.info(r.headers)
     logging.info(r.text)
-    logging.info(chardet.detect(r.text))
+    logging.info(chardet.detect(r.text.encode()))
     global msg
     if not r.text:
         return "", False
