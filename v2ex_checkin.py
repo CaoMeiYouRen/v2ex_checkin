@@ -20,7 +20,7 @@ SESSION = requests.Session()
 msg = []
 
 HEADERS = {
-    "Accept": "*/*",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
     "Accept-Encoding": "gzip, deflate, br",
     "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,ja;q=0.7,zh-TW;q=0.6,da;q=0.5",
     "Accept-Charset": "utf-8",
@@ -28,12 +28,13 @@ HEADERS = {
     "Cookie": COOKIES,
     "pragma": "no-cache",
     "Referer": "https://www.v2ex.com/",
-    "sec-ch-ua": '"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
+    "sec-ch-ua": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
     "sec-ch-ua-mobile": "?0",
+    "Sec-Ch-Ua-Platform": '"Windows"',
     "Sec-Fetch-Dest": "empty",
     "Sec-Fetch-Mode": "cors",
     "Sec-Fetch-Site": "same-origin",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "x-requested-with": "X",
 }
 
@@ -61,7 +62,8 @@ def get_once():
     r = SESSION.get(url, headers=HEADERS)
     logging.info(r.headers)
     logging.info(r.text)
-    logging.info(chardet.detect(r.text.encode()))
+    logging.info(r.content)
+    # logging.info(chardet.detect(r.text.encode()))
     global msg
     if not r.text:
         return "", False
