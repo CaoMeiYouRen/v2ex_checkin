@@ -57,8 +57,7 @@ def send_notify(title, text, config):
 # 获取 once
 def get_once():
     url = "https://www.v2ex.com/mission/daily"
-    r = SESSION.get(url, headers=HEADERS, encoding="utf-8")
-    logging.info(r.text)
+    r = SESSION.get(url, headers=HEADERS)
 
     global msg
     if not r.text:
